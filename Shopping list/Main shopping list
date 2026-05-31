@@ -1,0 +1,19 @@
+A shopping list that also explains what is the purpose of each component, none of the links are affiliate links, I make no profit or money with this project, the items are:
+
+M-Audio pedal to control the power or frequency of the solenoid graver. You can do any of the pedals that have a potentiometer from 0 to 10 kOhms, there is an option to 'zero' the pedal for other models also:
+https://www.thomann.se/maudio_expression_pedal.htm?glp=1&gad_source=1&gad_campaignid=1566952545&gbraid=0AAAAADuDMCUFeI0P-VpMoobwlbdcsMJvo&gclid=CjwKCAjwuO_QBhAWEiwAIkVhU04PN4mmcX5fAXnwDI4_LwQcJjOBgm5YEscZd5jURpTVc65ysyDXxxoCPkEQAvD_BwE
+
+MOSFET bridge to transfer the whole power of the PSU (12V) straight to the solenoid without handling the 12V directly to the ESP32-S3. 
+https://www.aliexpress.com/item/1005003092037857.html?spm=a2g0o.order_list.order_list_main.28.51371802NTwguf
+
+Waveshare screen that will be the brain and the interface of the project, it has to be exactly this model 3.5B because it is adapted to this model. You can buy from other places also. 
+https://www.aliexpress.com/item/1005010597169509.html?spm=a2g0o.order_list.order_list_main.68.51371802NTwguf
+
+Buck converter to adjust the voltage from the 12V to the 5V that will power the Waveshare screen. Make sure your power supply can provide at least 2.5A for the whole system. 
+https://www.aliexpress.com/item/1005004153906058.html?spm=a2g0o.productlist.main.41.108b74a6d8JhPW&algo_pvid=1e9b271c-f313-450c-9fe5-eeeb100875e8&algo_exp_id=1e9b271c-f313-450c-9fe5-eeeb100875e8-40&pdp_ext_f=%7B%22order%22%3A%22412%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&pdp_npi=6%40dis%21SEK%2125.14%2125.14%21%21%212.65%212.65%21%40211b81a317802492059821018efdca%2112000028214963430%21sea%21SE%21133261810%21X%211%210%21n_tag%3A-29919%3Bd%3A453bc223%3Bm03_new_user%3A-29895&curPageLogUid=msENJGtFa7H6&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005004153906058%7C_p_origin_prod%3A
+
+If you do not know or don't have tools to adjust the output voltage, select a model that has screens to assist you, like this one: 
+https://www.aliexpress.com/item/1005006655110785.html?spm=a2g0o.productlist.main.6.108b74a6d8JhPW&algo_pvid=1e9b271c-f313-450c-9fe5-eeeb100875e8&algo_exp_id=1e9b271c-f313-450c-9fe5-eeeb100875e8-5&pdp_ext_f=%7B%22order%22%3A%221589%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&pdp_npi=6%40dis%21SEK%2137.43%2137.43%21%21%2126.71%2126.71%21%40211b81a317802492059821018efdca%2112000037935482285%21sea%21SE%21133261810%21X%211%210%21n_tag%3A-29919%3Bd%3A453bc223%3Bm03_new_user%3A-29895&curPageLogUid=NUd1NWlRKq8e&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005006655110785%7C_p_origin_prod%3A
+
+
+
