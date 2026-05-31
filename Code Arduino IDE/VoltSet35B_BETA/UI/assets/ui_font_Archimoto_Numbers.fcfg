@@ -1,0 +1,16 @@
+{
+  "codename": "Archimoto_Numbers",
+  "ttf_path": "/assets/Demoarchimotov01Mediumitalic-MVqXJ.otf",
+  "bin_path": "/assets\\ui_font_Archimoto_Numbers.bin",
+  "c_path": "/assets\\ui_font_Archimoto_Numbers.c",
+  "cfg_path": "/assets\\ui_font_Archimoto_Numbers.fcfg",
+  "size": 30,
+  "bpp": 1,
+  "letters": 0,
+  "ranges": [
+    "0x20-0x7f"
+  ],
+  "symbols": "",
+  "customparams": "--no-compress --no-prefilter",
+  "uploaded": false
+}

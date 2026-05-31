@@ -1,0 +1,4 @@
+Make sure the LVGL version installed is the 8.X, The recommended version is 8.4
+Set the Arduino IDE to the configuration shown in the Settings for Arduino IDE.png when uploading the sketch.
+Remove the functions from the ui_events.cpp and define them in the main .ino sketch to avoid conflicts
+Change the lv_conf.h to have a basic LV_MEM_CUSTOM to #define LV_MEM_CUSTOM 0
