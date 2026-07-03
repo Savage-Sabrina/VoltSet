@@ -50,7 +50,7 @@ make it remember the last time it was used*/
 Preferences systemValues;
 int lastValuePedal =0; //To update the screen only when the values change
 
-int samples[5];   // Circular buffer for the dynamic filter
+int samples[100];   // Circular buffer for the dynamic filter
 int sampleIndex = 0;
 
 int SoftFrequencyValue; //Variables that will define the saved values on the buttons
@@ -85,6 +85,8 @@ unsigned long runningTotal = 0;
 //float sharedPedalValue;
 float normalized;
 float sensorValue;
+float pedalRead;
+int previousSensorValue = 0;
 
 volatile int sharedPowerSlider;
 volatile int sharedFrequencySlider;
@@ -229,15 +231,6 @@ void setup() {
     ui_init();
     //lv_timer_create(MainLoadValues, 20, NULL);
     uiReady = true;
-
-    for (int i = 0; i < 5; i++) { //Creating the first batch of measurements for the program to have a reference otherwise the read pedal divides by zero
-      samples[i] = analogRead(PedalPin);
-      runningTotal += samples[i];
-    }
-
-
-
-
   }
 }
 
@@ -284,21 +277,23 @@ void controlTask(void *pvParameters)
 
 void ReadPedalValue(){
   
-  sensorValue = analogRead(PedalPin);
+  pedalRead = analogRead(PedalPin);
 
-    
-  runningTotal -= samples[sampleIndex]; // Remove oldest sample from total
-  samples[sampleIndex] = analogRead(PedalPin); // Read new sample
-  runningTotal += samples[sampleIndex];  // Add new sample to total
+  runningTotal -= samples[sampleIndex];   // Remove oldest sample
+  samples[sampleIndex] = pedalRead;     // Store new sample
+  runningTotal += samples[sampleIndex];   // Add new sample
+  
 
   // Advance circular index
   sampleIndex++;
-  if (sampleIndex >= 5) {
+  if (sampleIndex >= 100) {
       sampleIndex = 0;
   }
-  
-  sensorValue = runningTotal / 5;// Compute average
-  sharedPedalValue = round(map(sensorValue, PedalZero, 4095, -15, 100));  // Scale to 0-100
+
+  sensorValue = runningTotal / 100;// Compute average of measuremets to avoid peak readings
+
+  sharedPedalValue = round(map(sensorValue, PedalZero, 4095, -40, 100));  // Scale to 0-100
+
 
   if (sharedPedalValue>0){
     if (sharedFrequencyMode){
@@ -321,7 +316,6 @@ void ReadPedalValue(){
 
 void updateSolenoid()
 {
-  //uint32_t now;
 
   if(millis() <= PreviousTime + SolenoidTime){
     ledcWrite(HandpiecePin, PWMValue);
@@ -335,11 +329,10 @@ void updateSolenoid()
     PreviousTime=millis();
   } 
    
-}      //Finish mode 2 (Direct Frequency)
+} 
 
 
-
-void SpeedPedal(){
+void SpeedPedal(){ //The pedal choses how fast is the blow the power is fixed
 
   normalized = sensorValue / 4095.0;
 
@@ -353,7 +346,7 @@ void SpeedPedal(){
   PWMValue = sharedPowerSlider*MaximumSolenoidPWM/100;
 }
 
-void PowerPedal(){
+void PowerPedal(){ //The pedal choses how powerful is the blow the frequency is fixed
   normalized = sensorValue / 4095.0;
 
   float frequency = sharedFrequencySlider;
@@ -365,13 +358,9 @@ void PowerPedal(){
   PWMValue = normalized*sharedPowerSlider*MaximumSolenoidPWM/100;
 }
 
+void createPreferences() { //saving the parameters for the machine to work correctly, I tried to name variables in a way that is readable
 
-
-
-
-void createPreferences() {
-
-  systemValues.begin("systemPrefs", false);   // open namespace for writing
+  systemValues.begin("systemPrefs", false);   // open preferences for writing the code, if it was true it wouuld be read only
 
   if(!systemValues.isKey("SoftFreq"))       systemValues.putInt("SoftFreq", 0);
   if(!systemValues.isKey("SoftPower"))      systemValues.putInt("SoftPower", 0);
@@ -613,44 +602,13 @@ void SaveCurrentValues()
 }
 
 
-void ZeroPedal(){
+void ZeroPedal(){ //This zeroes the pedal to remove residual resistance
   sensorValue = analogRead(PedalPin);
-    
-  // Static variables keep their values between calls
-  static int buffer[10] = {0};
-  static int index = 0;
-  static long total = 0;
-  static bool initialized = false;
-
-  // Initialize buffer only once
-  if (!initialized) {
-
-      for (int i = 0; i < 10; i++) {
-          buffer[i] = analogRead(PedalPin);
-          total += buffer[i];
-      }
-
-      initialized = true;
-  }
-
-  // Remove oldest value
-  total -= buffer[index];
-
-  // Insert new value
-  buffer[index] = analogRead(PedalPin);
-
-  // Add new value
-  total += buffer[index];
-
-  // Move circular index
-  index++;
-
-  if (index >= 10) {
-      index = 0;
-  }
   
   systemValues.begin("systemPrefs", false);
-  systemValues.putInt("SharedPedalZero", total / 10);
+  systemValues.putInt("SharedPedalZero", sensorValue);
   systemValues.end();
+
+  
 }
 

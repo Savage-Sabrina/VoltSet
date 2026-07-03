@@ -1,4 +1,15 @@
-Make sure the LVGL version installed is the 8.X, The recommended version is 8.4
-Set the Arduino IDE to the configuration shown in the Settings for Arduino IDE.png when uploading the sketch.
+Make sure the LVGL version installed in the Arduino IDE is the 8.X, The recommended version is 8.4.
+Install the library Preferences by Volodymyr on the Arduino IDE 
+Set the Arduino IDE to the configuration shown in the image Settings for Arduino IDE.png when uploading the sketch.
+
+Changed the line 49 on the lv_conf.h to uncommented
+	#define LV_MEM_CUSTOM 0
+Changed the lines 93 and 94 on the lv_conf.h to uncommented
+	#define LV_TICK_CUSTOM_INCLUDE "esp_timer.h"
+	#define LV_TICK_CUSTOM_SYS_TIME_EXPR ((esp_timer_get_time() / 1000LL))
+
+
+Learnings from the project:
 Remove the functions from the ui_events.cpp and define them in the main .ino sketch to avoid conflicts
 Change the lv_conf.h to have a basic LV_MEM_CUSTOM to #define LV_MEM_CUSTOM 0
+Remove the part of the function lv_event_t * e of those that do not rely on actions of an element.

@@ -10,12 +10,11 @@
 extern "C" {
 #endif
 
-void StartupDataRetrieval();
+//event based functions
 void StartupLoadValues(lv_event_t * e);
 void MainLoadValues(lv_event_t * e);
 void SoftSetValue(lv_event_t * e);
 void SoftSaveValue(lv_event_t * e);
-void SaveCurrentValues();
 void MediumSetValue(lv_event_t * e);
 void MediumSaveValue(lv_event_t * e);
 void HardSetValue(lv_event_t * e);
@@ -24,7 +23,11 @@ void CustomSetValue(lv_event_t * e);
 void CustomSaveValue(lv_event_t * e);
 void SettingsLoadValues(lv_event_t * e);
 void SaveSetupValue(lv_event_t * e);
+
+//Non event based functions
 void ZeroPedal();
+void SaveCurrentValues();
+void StartupDataRetrieval();
 
 #ifdef __cplusplus
 } /*extern "C"*/

@@ -7,80 +7,85 @@
 
 // void StartupDataRetrieval(lv_event_t * e)
 // {
-// 	// Your code here
+// // Your code here
 // }
 
 // void StartupLoadValues(lv_event_t * e)
 // {
-// 	// Your code here
+// // Your code here
 // }
 
 // void MainLoadValues(lv_event_t * e)
 // {
-// 	// Your code here
+// // Your code here
 // }
 
 // void SoftSetValue(lv_event_t * e)
 // {
-// 	// Your code here
+// // Your code here
 // }
 
 // void SoftSaveValue(lv_event_t * e)
 // {
-// 	// Your code here
+// // Your code here
 // }
 
 // void SaveCurrentValues(lv_event_t * e)
 // {
-// 	// Your code here
+// // Your code here
 // }
 
 // void MediumSetValue(lv_event_t * e)
 // {
-// 	// Your code here
+// // Your code here
 // }
 
 // void MediumSaveValue(lv_event_t * e)
 // {
-// 	// Your code here
+// // Your code here
 // }
 
 // void HardSetValue(lv_event_t * e)
 // {
-// 	// Your code here
+// // Your code here
 // }
 
 // void HardSaveValue(lv_event_t * e)
 // {
-// 	// Your code here
+// // Your code here
 // }
 
 // void CustomSetValue(lv_event_t * e)
 // {
-// 	// Your code here
+// // Your code here
 // }
 
 // void CustomSaveValue(lv_event_t * e)
 // {
-// 	// Your code here
+// // Your code here
 // }
 
 // void SettingsLoadValues(lv_event_t * e)
 // {
-// 	// Your code here
+// // Your code here
 // }
 
 // void SaveSetupValue(lv_event_t * e)
 // {
-// 	// Your code here
+// // Your code here
 // }
 
 // void TestPulseSolenoid(lv_event_t * e)
 // {
-// 	// Your code here
+// // Your code here
 // }
 
 // void TestPulse(lv_event_t * e)
 // {
-// 	// Your code here
+// // Your code here
+// }
+
+// void ZeroPedal(lv_event_t * e)
+// {
+// // Your code here
 // }
